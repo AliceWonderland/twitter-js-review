@@ -1,0 +1,17 @@
+{
+  "name": "wikistack",
+  "version": "1.0.0",
+  "description": "wikistack app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+//    "start": "nodemon -e html,js,css app.js",
+    "start": 'nodemon app.js'
+  },
+  "author": "Alice",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "express": "^4.15.3"
+  }
+}
