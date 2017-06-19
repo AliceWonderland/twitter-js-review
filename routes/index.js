@@ -22,6 +22,14 @@ router.get( '/users/:name', function (req, res) {
     res.render( 'index', { tweets: list } );
 });
 
+// tweets id route
+router.get( '/tweets/:id', function (req, res) {
+    console.log("req.params.name",req.params.name); // --> 'nimit'
+    var tweetId = req.params.id;
+    var list = tweetBank.find( {id: Number(tweetId)} );
+    res.render( 'index', { tweets: list } );
+});
+
 router.get( '/store/:product/reviews/:id', function (req, res) {
     // use req.params here
     // store/microwave/reviews/197
