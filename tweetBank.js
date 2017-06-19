@@ -2,6 +2,7 @@ const _ = require('lodash');
 var data=[];
 
 function add (name, content) {
+    console.log(name,content);
     var uniqId=Math.round(Math.random()*600);
     data.push({ id:uniqId, name: name, content: content });
 }

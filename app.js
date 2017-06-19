@@ -1,9 +1,13 @@
 "use strict";
+// usually built-in pkgs and pkgs go in here
 const express = require( 'express' );
 const app = express(); // creates an instance of an express application
 const chalk=require('chalk');
 const nunjucks=require('nunjucks');
 const routes = require('./routes');
+const bodyParser = require('body-parser');
+
+
 
 
 // my logger all requests
@@ -35,6 +39,13 @@ app.use('/special',function (req,res,next) {
     next(); //must include next in app.use or if it's your own custom coded middleware
 });
 
+// loggers go above this line
+
+// for body-parser middleware
+// must go before the routes call
+app.use(bodyParser.urlencoded({ extended: true })); // for HTML form submits parse application/x-www-form-urlencoded
+app.use(bodyParser.json()); // would be for AJAX requests parse application/json
+
 // middleware for routes module
 app.use('/', routes);
 
@@ -43,6 +54,7 @@ app.use('/', routes);
 app.use(express.static('public'));
 
 // routes to capture url
+// moved to routes/index.js
 // app.get('/',function (req,res) {
 //     // res.send('Welcome to ROOT');
 //     // place this in this app.get /
@@ -69,6 +81,8 @@ nunjucks.configure('views');
 nunjucks.render('index',locals,function (err,output) {
     console.log(output);
 });
+// the above line can also go into line 52 as res.render because of line 79
+// make sure to remove err callback it does not work when callsed inside an app.get
 
 // app.use() app.set() middleware
 // use nunjucks with the express app
