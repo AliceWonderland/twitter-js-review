@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 // could use one line instead: const router = require('express').Router();
 const tweetBank = require('../tweetBank');
+const path=require('path');
 
 // root route loads tweetBank
 router.get('/', function (req, res) {
@@ -55,11 +56,13 @@ router.get( '/store/:product/reviews/:id', function (req, res) {
     console.log(req.params.product, req.params.id);
 });
 
-// __dirname +
-// router.get('/stylesheets/style.css',function (req,res) {
-//     res.sendFile('../public/stylesheets/style.css');
+// coding your own path to styles.css
+// instead of using express static
+// router.get('/stylesheets/style.css', function(req, res) {
+//     // res.sendFile("../"+__dirname + "/" + "style.css");
+//     res.sendFile('style.css', { root: path.join(__dirname, '../public/stylesheets') });
 // });
-// how do i input the path in here?
+// requires line 5
 
 
 // does this goes here or in app.js
